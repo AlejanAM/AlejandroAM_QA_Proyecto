@@ -1,0 +1,23 @@
+<ion-card-header class="headCard">
+  <div style="display: flex; align-items: center;justify-content: center;">
+    <ion-img style="padding-top: 5%; width:150px; height: 150px;" src="../../assets/icon/logo.png"></ion-img>
+  </div>
+</ion-card-header>
+
+
+<ion-content class="Menu" >
+  <ion-grid >
+    <ion-row>
+      <ion-col align-self-center>
+
+        <ion-button  [routerLink]="['/registration']" expand="block">Register</ion-button>
+
+        <span class="mid">or are you already an user? </span>
+
+        <ion-button  [routerLink]="['/login']" expand="block">Sign In</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

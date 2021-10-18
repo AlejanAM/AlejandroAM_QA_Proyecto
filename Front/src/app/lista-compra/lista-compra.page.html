@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" style="color :#ffffff; ">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color :#ffffff;">
+      <strong>Lista de Compras</strong>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h1 class="title">List of Products</h1>
+  <br>
+  <ion-item>
+    <ion-label>Filtro Category</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="category" (ionChange)="filtrar($event)">
+      <ion-select-option [value]="item" *ngFor="let item of listCategory">{{item.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openListMarket()" #listMarket>
+      <ion-icon name="clipboard-outline" class="list-icon"></ion-icon>
+      <div class="list-length">{{ listItemCount | async }}</div>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="cart-items">
+    <ion-card mode="ios" *ngFor="let item of listProductsFiltered">
+      <ion-card-content class="centerContent">
+        <div class="item-img">
+          <img [src]="item.img" />
+        </div>
+
+        <div class="item-info">
+          <p>{{item.name}}</p>
+          <p>{{item.description}}</p>
+          <p>${{item.price}}</p>
+
+          <div class="qty-selector">
+
+          </div>
+        </div>
+        <ion-button fill="clear" (click)="addToListMarket(item)" class="addButton">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" style="color :#ffffff; ">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color :#ffffff;">
+      <strong>Ver Lista</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h1 class="title">List of Products</h1>
+
+  <div class="cart-items">
+    <ion-card mode="ios" *ngFor="let item of listMarket">
+      <ion-card-content class="centerContent">
+        <div class="item-img">
+          <img [src]="item.img" />
+        </div>
+
+        <div class="item-info">
+          <p>{{item.name}}</p>
+          <p>{{item.description}}</p>
+          <p>${{item.price}}</p>
+
+          <div class="qty-selector">
+
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" style="color :#ffffff; ">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color :#ffffff;">
+      <strong>Create Products</strong>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add product image</ion-card-title>
+      <div class="grid-container">
+        <input hidden #inputFile type="file" (change)="upload($event)" accept=".png,.jpg">
+        <ion-card class="cardImg grid-item addImg" (click)="inputFile.click()">
+          <ion-card-content class="centerItems">
+            <ion-icon name="add-outline"></ion-icon>
+            <br>
+            <ion-label>Add image</ion-label>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="cardImg grid-item border preview" *ngIf="URLPublica === undefined">
+          <ion-card-content class="centerItems">
+            <ion-icon name="image-outline"></ion-icon>
+            <br>
+            <ion-label class="textFont">Preview Img</ion-label>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-img [src]="URLPublica" *ngIf="URLPublica != undefined"></ion-img>
+      </div>
+
+      <div *ngIf="currentFileUpload" class="progress mt-2">
+        <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+          {{ percentage }}%
+        </div>
+      </div>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Product Name</ion-label>
+        <ion-input [(ngModel)]="nameProduct"></ion-input>
+      </ion-item>
+      <ion-label></ion-label>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [(ngModel)]="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Price</ion-label>
+        <ion-input type="number" [(ngModel)]="price"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Category</ion-label>
+        <ion-select placeholder="Select One" [(ngModel)]="category">
+          <ion-select-option [value]="item" *ngFor="let item of listCategory">{{item.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="crearProducto()">Create Product</ion-button>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

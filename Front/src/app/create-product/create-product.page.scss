@@ -1,0 +1,39 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.cardImg{
+  margin-left: 3px;
+  width: 95%;
+}
+
+.centerItems{
+  text-align: center;
+}
+
+.border{
+  border-style: dashed;
+}
+
+.textFont{
+  font-size: smaller;
+}
+
+.preview{
+  opacity: 0.4;
+}
+
+.addImg {
+  cursor: pointer;
+  transition: filter 0.3s ease 0.3s;
+}
+
+.addImg:active {
+  filter: drop-shadow(0 0 0 black);
+  transition: filter 0s;
+}
+
+.alert-radio-label.sc-ion-alert-md{
+  color: black !important;
+}

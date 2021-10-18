@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" style="color :#ffffff; ">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color :#ffffff;">
+      <strong>Family Main</strong>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="userCreator">
+
+  <ion-card>
+    <strong>
+      <p style="color: black;text-align: left; margin: 5px 10px 10px;">Nombre de la familia: </p>
+    </strong>
+    <p style="color: black;text-align: center; margin: 10px 1px 10px;">{{family.familyName}}</p>
+  </ion-card>
+
+  <ion-card>
+    <ion-row>
+      <ion-col size="9" size-md>
+        <ion-input id="inputSearch" [(ngModel)]="text" placeholder="Search member" style="color: black; text-align: left;" (ionInput)="test($event)"></ion-input>
+      </ion-col>
+      <ion-col class="search">
+        <ion-button fill=“clear” icon-only clear style="position: absolute; right: 3%;" (click)="filterPlayeyrs()">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-list lines="none">
+      <ion-item *ngFor="let user of usersFiltered">
+        <ion-label>{{user.displayName}}</ion-label>
+        <ion-button fill=“clear” icon-only clear (click)="addMember(user.uid)">
+          <ion-icon name="person-add"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card button class="card-2" *ngIf="family.members.length != 0">
+    <ion-list lines="none">
+      <ion-item-group>
+        <ion-item-divider style="color:black;" (click)="toggleD()">
+          <strong> Miembros </strong>
+          <ion-icon class="ml-20" color="white" name="caret-up-outline" *ngIf="!showMembers" style="position: absolute; right: 20px;"></ion-icon>
+          <ion-icon class="ml-20" color="white" name="caret-down-outline" *ngIf="showMembers" style="position: absolute; right: 20px;"></ion-icon>
+        </ion-item-divider>
+        <div *ngIf="showMembers">
+          <ion-item *ngFor="let member of family.members">
+            <ion-label>{{member.displayName}}</ion-label>
+            <ion-button fill=“clear” icon-only clear (click)="deletMember(member.uid,member.displayName)">
+              <ion-icon size="large" name="trash"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<ion-content *ngIf="userMember">
+
+  <ion-card>
+    <p style="color: black;text-align: center; ">Ya eres miembro de una familia,</p>
+    <p style="color: black;text-align: center; ">puedes crear una o ser solo miembro </p>
+  </ion-card>
+  <ion-card>
+    <ion-input placeholder="Family name" style="color: black; text-align: left;" [(ngModel)]="text2"></ion-input>
+    <ion-button expand="block" (click)="createFamily()">Create family</ion-button>
+  </ion-card>
+
+</ion-content>
+
+<ion-content *ngIf="!userMember && !userCreator">
+
+  <ion-card>
+    <p style="color: black;text-align: center; ">Inicia una familia compartida </p>
+  </ion-card>
+  <ion-card>
+    <ion-input placeholder="Family name" style="color: black; text-align: left;" [(ngModel)]="text2"></ion-input>
+    <ion-button expand="block" (click)="createFamily()">Create family</ion-button>
+  </ion-card>
+
+
+
+</ion-content>

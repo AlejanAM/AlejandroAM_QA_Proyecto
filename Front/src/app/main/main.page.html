@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" style="color :#ffffff; ">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color :#ffffff;">
+      <strong>Main Menu</strong>
+    </ion-title>
+    <ion-buttons slot="primary">
+
+      <ion-button (click)="esto()">
+        <ion-icon slot="icon-only" md="list-circle-outline"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="hasFamily">
+
+    <ion-fab horizontal="center" vertical="center" slot="fixed">
+      <ion-fab-button color="light">
+        <ion-icon name="share"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button class="options" color="primary" (click)="goToCreateList()">
+          <p class="textIcon">Crt-Lst</p>
+          <ion-icon class="test" name="reader-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+      <ion-fab-list side="end">
+        <ion-fab-button class="options" color="primary" (click)="goToCreateProduct()">
+          <p class="textIcon">Products</p>
+          <ion-icon class="test" name="bag-add-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+      <ion-fab-list side="start">
+        <ion-fab-button class="options" color="primary" (click)="goToList()">
+          <p class="textIcon">ShowList</p>
+          <ion-icon class="test" name="eye-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+      <!--
+      <ion-fab-list side="start">
+        <ion-fab-button class="options" color="primary">
+          <p class="textIcon">Create</p>
+          <ion-icon class="test" name="create-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list> -->
+    </ion-fab>
+
+  </div>
+
+  <p style="color: black;text-align: center; " *ngIf="!hasFamily">
+    No pertenece ni posee una lista familiar, solicitar ser añadido o crear una por medio del icono en la esquina superior derecha
+  </p>
+
+</ion-content>
