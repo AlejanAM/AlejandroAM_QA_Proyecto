@@ -71,7 +71,7 @@ export class CreateProductPage implements OnInit {
     this.back.postProduct(this.infoProduct)
     .subscribe((data:any)=>{
       this.limpiar();
-      this.toast.imgToast('Producto Creado Exitosamente!!');
+      this.toast.imgToast('Producto Creado Exitosamente!');
     });
 
   }

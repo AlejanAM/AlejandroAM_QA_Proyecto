@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { ModalController, AlertController } from '@ionic/angular';
 import { ListMarketModalPage } from "../list-market-modal/list-market-modal.page";
 import { PassDataService } from '../services/pass-data.service';
-
+import { ToastService } from '../services/toast.service';
 @Component({
   selector: 'app-lista-compra',
   templateUrl: './lista-compra.page.html',

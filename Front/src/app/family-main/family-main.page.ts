@@ -83,8 +83,9 @@ export class FamilyMainPage implements OnInit {
         if (data.success) {
           id = data.data;
         }
+        this.toast.informationToast('Lista de productos creada exitosamente','success','');
       })
-      console.log(id);
+      
 
       return id;
   }
@@ -107,7 +108,7 @@ export class FamilyMainPage implements OnInit {
             this.userMember = false;
             this.verify();
           }else{
-            this.toast.informationToast('Fallo de sistema','danger','Error:');
+            this.toast.informationToast('Fallo de sistema','danger','Error: Fallo al crear familia');
           }
         });
       }
@@ -122,7 +123,7 @@ export class FamilyMainPage implements OnInit {
         this.toast.informationToast('Usuario eliminado exitosamente:','succes','');
         this.filterPlayeyrs();
       }else{
-        this.toast.informationToast('Fallo de sistema','danger','Error:');
+        this.toast.informationToast('Fallo de sistema','danger','Error: No se ha podido eliminar');
       }
       this.verify();
     });
@@ -137,7 +138,7 @@ export class FamilyMainPage implements OnInit {
         this.toast.informationToast('Usuario añadido exitosamente:','succes','');
         this.filterPlayeyrs();
       }else{
-        this.toast.informationToast('Fallo de sistema','danger','Error:');
+        this.toast.informationToast('Fallo de sistema','danger','Error: No se ha podido añadir');
       }
       this.verify();
     });
