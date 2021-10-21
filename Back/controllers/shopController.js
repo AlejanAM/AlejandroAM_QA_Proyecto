@@ -16,6 +16,66 @@ function flatten(board) {
     }, [])
 }
 
+
+
+router.get('/sendEmail', async (req, res) => {
+    const email = req.query.email;
+    const nodemailer = require("nodemailer");
+    let mailTransporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user:"qahandylist@gmail.com",
+            pass: "Vcxz7890",
+        },
+    });
+    let mailDetails = {
+        from: "qahandylist@gmail.com",
+        to: email,
+        subject: "Welcome to HandyList",
+        text: "Here you can manage your lists with your relatives, so they can see what is needed in the house.",
+    };
+    try {
+
+        await mailTransporter.sendMail(mailDetails, function (err, data) {
+            if (err) {
+                res.status(status.INTERNAL_SERVER_ERROR).json({ error: err+" ", success:false});
+            } else {
+                res.status(status.OK).json({success:true});
+            }
+        });
+
+    } catch (err) {
+        res.status(status.INTERNAL_SERVER_ERROR).json({ error: err });
+    }
+});
+
+/*
+function emailSender (){
+    const nodemailer = require("nodemailer");
+
+    let mailTransporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user:"alefirucho@gmail.com",
+            pass: "morera123",
+        },
+    });
+    let mailDetails = {
+        from: "alefirucho@gmail.com",
+        to: "moreraalejandro12@gmail.com",
+        subject: "You Were Hacked 8)",
+        text: "System failure !",
+    };
+    mailTransporter.sendMail(mailDetails, function (err, data) {
+        if (err) {
+            console.log("Error Occurs");
+        } else {
+            console.log("Email sent successfully");
+        }
+    });
+        
+}*/
+
 function listGenerator() {
     const friendList = Array(0).fill(null).map(() => Array(0).fill(null))
     return flatten(friendList);
@@ -428,51 +488,7 @@ router.put('/removeMember', async (req, res) => {
     }
 });
 
-//crea una lista de productos
-/*
-router.post('/createdList', async (req, res) => {
 
-    const idListOwner = await getPlayerInfo(req.body.idListOwner)
-    const listName = req.body.listName;
-
-    var alreadyExist = false;
-
-    try {
-
-        var db = firebase.firestore();
-
-        await db.collection('productList')
-            .get()
-            .then(snapshot => {
-                snapshot.forEach(async doc => {
-                    if (await doc.data().idListOwner.uid === idListOwner.uid) {
-                        alreadyExist = true;
-                    }
-                });
-            });
-
-        if (!alreadyExist) {
-          db.collection('productList').add({
-              idListOwner: idListOwner,
-              listName: listName,
-              products: listGenerator()
-
-          }).then(response => {
-              res.status(status.OK).json({ IdListOwner: response.id, ListName: listName, ListId: response.id });
-          }).catch(err => {
-              console.log(err);
-              res.status(status.INTERNAL_SERVER_ERROR).json({error:err + ' ', success:false});
-          });
-        }
-        else
-          res.status(status.OK).json({ message: 'Already Exist' ,success:false});
-
-    } catch (err) {
-        console.log(err);
-        res.status(status.INTERNAL_SERVER_ERROR).json({error:err + ' ', success:false});
-    }
-});
-*/
 //añade un producto a la lista de productos usando el id de la lista
 router.put('/addProduct', async (req, res) => {
     try {

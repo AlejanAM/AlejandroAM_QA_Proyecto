@@ -33,6 +33,8 @@ export class BackService {
     return this.http.get(`${environment.urlRootBack}/getAllplayers`);
   }
 
+
+
   getFamilyByUser(
     uid:string
   ){
@@ -127,5 +129,11 @@ export class BackService {
  ){
    return this.http.get(`${environment.urlRootBack}/getListMarket?idListOwner=${idListOwner}`);
  }
+
+ sendMail(
+  email: string
+){
+  return this.http.get(`${environment.urlRootBack}/sendEmail?email=${email}`);
+}
 
 }

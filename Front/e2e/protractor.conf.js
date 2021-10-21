@@ -24,7 +24,7 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
-  onPrepare() {
+  onPrepare() {/*
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
@@ -32,6 +32,6 @@ exports.config = {
       spec: {
         displayStacktrace: StacktraceOption.PRETTY
       }
-    }));
+    }));*/
   }
 };
