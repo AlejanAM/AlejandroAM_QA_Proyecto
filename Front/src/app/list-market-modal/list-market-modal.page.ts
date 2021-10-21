@@ -4,7 +4,7 @@ import { ModalController, AlertController  } from '@ionic/angular';
 import { BackService } from '../services/back.service';
 import { addIdToFamily } from '../models/addIdToFamily';
 import { productToList } from '../models/productToList';
-
+import { ToastService } from '../services/toast.service';
 @Component({
   selector: 'app-list-market-modal',
   templateUrl: './list-market-modal.page.html',
@@ -21,7 +21,7 @@ export class ListMarketModalPage implements OnInit {
   productToList = new productToList();
 
   constructor(public passData: PassDataService, public modalCtrl: ModalController,
-    private alertCtrl: AlertController, public back: BackService) {
+    private alertCtrl: AlertController, public back: BackService, private toast:ToastService) {
 
       this.datosUsuarioLoggedIn = JSON.parse(localStorage.getItem('user'));
 
@@ -64,14 +64,8 @@ export class ListMarketModalPage implements OnInit {
        });
    });
 
-   let alert = await this.alertCtrl.create({
-     header: 'Lista guardada!',
-     message: 'Se ha creado tu lista de mercado correctamente',
-     buttons: ['OK']
-   });
-   alert.present().then(() => {
-     this.modalCtrl.dismiss();
-   });
+   this.toast.informationToast('Lista guardada exitosamente:','success','');
+   
 
  }
 
@@ -81,7 +75,7 @@ export class ListMarketModalPage implements OnInit {
      this.productToList.proName = item.name;
      this.back.addProductToList(this.productToList)
      .subscribe((data:any)=>{
-         console.log();
+         this.toast.informationToast('Productos añadidos exitosamente:','success','');
      });
    }
  }
