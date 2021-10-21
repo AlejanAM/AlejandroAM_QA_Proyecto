@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { ToastService } from '../services/toast.service';
 import {infoUser} from '../models/infoUser';
+import { BackService } from '../services/back.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.page.html',
@@ -24,11 +25,12 @@ export class RegistrationPage implements OnInit {
   errorMessage = ''; // validation error handle
   error: { name: string, message: string} = {name: '', message: ''}; // control error firebase
 
-  constructor(private router: Router, private firebaseService: FirebaseService, private toastService: ToastService) {
+  constructor(private router: Router, private firebaseService: FirebaseService, private toastService: ToastService,private backService: BackService) {
     this.datosUsuarioLoggedIn = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit() {
+    
   }
 
   clearErrorMessage()
@@ -64,17 +66,22 @@ export class RegistrationPage implements OnInit {
       this.firebaseService.registerWithEmail(this.displayName,this.email, this.password)
       .then(() => {
         
+        this.backService.sendMail(this.email).subscribe(response=>{
+          console.log(response);
+        });
+
         this.toastService.presentToast("Registro exitoso, ahora puedes iniciar sesión");
         this.inputCorreo.nativeElement.value = '';
         this.inputContra.nativeElement.value = '';
         this.inputDisplayName.nativeElement.value = '';
+
         this.delay(2500).then(any=>{
             this.router.navigate(['/login'])
         });
       }).catch(_error => {
         this.error = _error
         this.router.navigate(['/login'])
-      })
+      });
     }
   }
 

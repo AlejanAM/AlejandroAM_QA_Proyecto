@@ -33,6 +33,7 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 
 //Socket
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -56,6 +57,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BackService,
     FirebaseService,
+    EmailComposer,
     ToastService, LoadSpinnerService, PassDataService],
   bootstrap: [AppComponent],
 })

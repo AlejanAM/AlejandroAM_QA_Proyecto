@@ -22,6 +22,7 @@
     "@angular/router": "~11.2.0",
     "@capacitor/android": "^2.4.7",
     "@capacitor/core": "2.4.7",
+    "@ionic-native/email-composer": "^5.36.0",
     "@ionic/angular": "^5.5.2",
     "animate.css": "^4.1.1",
     "firebase": "^8.4.1",

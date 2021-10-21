@@ -27,7 +27,8 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
-  },  {
+  },
+  {
     path: 'family-main',
     loadChildren: () => import('./family-main/family-main.module').then( m => m.FamilyMainPageModule)
   },
@@ -47,6 +48,7 @@ const routes: Routes = [
     path: 'ver-lista',
     loadChildren: () => import('./ver-lista/ver-lista.module').then( m => m.VerListaPageModule)
   },
+
 
 
 
